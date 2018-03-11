@@ -7,7 +7,7 @@ This is a blog site designed in microservices architecture with the help of `Spr
 
 ##### Client npm dependencies status:
 
-[![dependencies Status](https://david-dm.org/hiper2d/awesome-blog/status.svg?path=client)](https://david-dm.org/hiper2d/spring-kotlin-angular-demo?path=client)
+[![dependencies Status](https://david-dm.org/hiper2d/awesome-blog/status.svg?path=client)](https://david-dm.org/hiper2d/awesome-blog?path=frontend/src/main/ng)
 [![devDependencies Status](https://david-dm.org/hiper2d/awesome-blog/dev-status.svg?path=frontend/src/main/ng)](https://david-dm.org/hiper2d/awesome-blog?path=frontend/src/main/ng&type=dev)
 
 ##### Technology stack

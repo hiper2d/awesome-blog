@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     base
-    kotlin("jvm") version "1.2.21" apply false
+    kotlin("jvm") version "1.2.30" apply false
 }
 
 allprojects {
@@ -16,6 +16,7 @@ allprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "1.8"
+            freeCompilerArgs = listOf("-Xjsr305=strict")
         }
     }
 }

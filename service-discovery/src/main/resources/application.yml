@@ -1,0 +1,17 @@
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8082/service-discovery/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+
+server:
+  port: 9002
+  servlet:
+    context-path: /service-discovery
+
+spring:
+  application:
+    name: service-discovery
