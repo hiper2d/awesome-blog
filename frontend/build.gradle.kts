@@ -48,7 +48,8 @@ tasks {
   }
 }
 
-tasks.findByName("compileKotlin")?.finalizedBy("yarnInstall", "yarnBuild")
+tasks.findByName("yarnBuild")?.dependsOn("yarnInstall")
+tasks.findByName("compileKotlin")?.finalizedBy("yarnBuild")
 
 repositories {
   maven { setUrl("https://repo.spring.io/milestone") }
