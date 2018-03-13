@@ -9,13 +9,6 @@ buildscript {
 
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:$bootVersion")
-
-    // Workaround to avoid Deprecated Java 9 Javax Dependencies
-    // See more here: https://github.com/aws/aws-sdk-java/issues/1092
-    implementation("javax.xml.bind:jaxb-api:2.3.0")
-    implementation("com.sun.xml.bind:jaxb-core:2.3.0")
-    implementation("com.sun.xml.bind:jaxb-impl:2.3.0")
-    implementation("javax.activation:activation:1.1.1")
   }
 }
 
