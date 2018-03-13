@@ -1,19 +1,12 @@
-matrix:
-  include:
-    - language: java
-      jdk: oraclejdk9
+language: java
+node_js: node
 
-    - language: node_js
-      node_js:
-          - node
-      before_script:
-          - yarn global add @angular/cli
-      script:
-          - ng build --prod
-      cache:
-        yarn: true
-        directories:
-            - node_modules
+before_script:
+  - yarn global add @angular/cli
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 notifications:
   email: false
