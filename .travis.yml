@@ -1,5 +1,19 @@
-language: java
-jdk: oraclejdk9
+matrix:
+  include:
+    - language: java
+      jdk: oraclejdk9
+
+    - language: node_js
+      node_js:
+          - node
+      before_script:
+          - yarn install -g --silent @angular/cli
+      script:
+          - ng build --prod
+      cache:
+        yarn: true
+        directories:
+            - node_modules
 
 notifications:
   email: false
