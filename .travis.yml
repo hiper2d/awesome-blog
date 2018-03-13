@@ -7,7 +7,7 @@ matrix:
       node_js:
           - node
       before_script:
-          - yarn install -g --silent @angular/cli
+          - yarn global add @angular/cli
       script:
           - ng build --prod
       cache:
