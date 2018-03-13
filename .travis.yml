@@ -1,5 +1,10 @@
 language: java
-  jdk: oraclejdk9
+
+jdk:
+  - oraclejdk9
+
+node_js:
+  - node
 
 before_script:
   - yarn global add @angular/cli
