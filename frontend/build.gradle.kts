@@ -40,11 +40,15 @@ tasks {
   }
   "yarnInstall"(type = Exec::class) {
     workingDir = file("src/main/ng")
+    commandLine = listOf("yarn", "install")
+  }
+  "yarnBuild"(type = Exec::class) {
+    workingDir = file("src/main/ng")
     commandLine = listOf("yarn", "run", "build")
   }
 }
 
-tasks.findByName("compileKotlin")?.finalizedBy("yarnInstall")
+tasks.findByName("compileKotlin")?.finalizedBy("yarnInstall", "yarnBuild")
 
 repositories {
   maven { setUrl("https://repo.spring.io/milestone") }
