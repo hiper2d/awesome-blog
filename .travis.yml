@@ -1,3 +1,10 @@
+matrix:
+  inclue:
+    - language: java
+        jdk: oraclejdk9
+    - language: node_js
+        node_js: node
+
 before_script:
   - yarn global add @angular/cli
 
