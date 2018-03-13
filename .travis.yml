@@ -1,5 +1,5 @@
 matrix:
-  inclue:
+  include:
     - language: java
         jdk: oraclejdk9
     - language: node_js
