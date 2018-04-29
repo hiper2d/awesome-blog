@@ -15,12 +15,12 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 * Spring Boot 2.0
 * Spring Cloud Netflix 2.0
 * Kotlin 1.2
-* Angular 5
+* Angular 6
 * Docker
-* Gradle 4.6
+* Gradle 4.7
 
 ##### Prerequisites
-1. Gradle 4.6
+1. Gradle 4.7
 2. Docker
 3. Node + Yarn
 4. JRE 8+
