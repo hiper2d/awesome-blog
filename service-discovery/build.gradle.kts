@@ -1,42 +1,10 @@
-buildscript {
-  val bootVersion = "2.0.0.RELEASE"
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+import org.springframework.boot.gradle.tasks.run.BootRun
 
-  repositories {
-    mavenCentral()
-    maven { setUrl("https://repo.spring.io/milestone") }
-    maven { setUrl("https://repo.spring.io/snapshot") }
-  }
-
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:$bootVersion")
-  }
-}
-
-plugins {
-  val kotlinVersion = "1.2.30"
-
-  application
-  kotlin("jvm")
-  id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
-  id("io.spring.dependency-management") version "1.0.4.RELEASE"
-}
-
-apply {
-  plugin("org.springframework.boot")
-}
-
-application {
-  mainClassName = "com.hiper2d.AppKt"
-}
-
-repositories {
-  maven { setUrl("https://repo.spring.io/milestone") }
-  maven { setUrl("https://repo.spring.io/snapshot") }
-}
+val springCloudVersion: Any? by project
 
 dependencyManagement {
   imports {
-    val springCloudVersion = "Finchley.M8"
     mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
     // spring-boot-dependencies bom is already included via spring-boot-gradle-plugin
   }
@@ -44,6 +12,6 @@ dependencyManagement {
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jre8")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 }
