@@ -3,9 +3,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8082/service-discovery/eureka/
-  server:
-    wait-time-in-ms-when-sync-empty: 0
+      defaultZone: http://localhost:${server.port}/${server.servlet.context-path}/eureka/
 
 server:
   port: 9002
