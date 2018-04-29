@@ -17,7 +17,7 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 * Kotlin 1.2
 * Angular 6
 * Docker
-* Gradle 4.7
+* Gradle 4.7 with Kotlin Script and jUnit 5
 
 ##### Prerequisites
 1. Gradle 4.7
