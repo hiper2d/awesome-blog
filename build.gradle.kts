@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     val kotlinVersion = "1.2.41"
-    val springBootVersion = "2.0.1.RELEASE"
+    val springBootVersion = "2.0.2.RELEASE"
     val springDependencyManagementVersion = "1.0.5.RELEASE"
 
     base

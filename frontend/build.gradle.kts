@@ -28,7 +28,6 @@ tasks.findByName("compileKotlin")?.finalizedBy("yarnBuild")
 dependencyManagement {
   imports {
     mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
-    // spring-boot-dependencies bom is already included via spring-boot-gradle-plugin
   }
 }
 
