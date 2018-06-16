@@ -11,4 +11,4 @@ ADD $JAR_NAME discovery.jar
 ENV JAVA_OPTS=$JAVA_OPTS
 EXPOSE $PORT
 
-ENTRYPOINT exec java $JAVA_OPTS -jar /discovery.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar /service-discovery.jar
