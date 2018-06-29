@@ -1,7 +1,10 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
+import org.gradle.internal.os.OperatingSystem
 
 val springCloudVersion: Any? by project
+val isWindows = OperatingSystem.current().name.startsWith("Windows")
+val yarnCmd = if (isWindows) "yarn.cmd" else "yarn"
 
 java.sourceSets[SourceSet.MAIN_SOURCE_SET_NAME].resources {
   srcDir("src/main/ng/dist")
@@ -10,15 +13,15 @@ java.sourceSets[SourceSet.MAIN_SOURCE_SET_NAME].resources {
 tasks {
   "yarnStart"(type = Exec::class) {
     workingDir = file("src/main/ng")
-    commandLine = listOf("yarn", "start")
+    commandLine = listOf(yarnCmd, "start")
   }
   "yarnInstall"(type = Exec::class) {
     workingDir = file("src/main/ng")
-    commandLine = listOf("yarn", "install")
+    commandLine = listOf(yarnCmd, "install")
   }
   "yarnBuild"(type = Exec::class) {
     workingDir = file("src/main/ng")
-    commandLine = listOf("yarn", "run", "build")
+    commandLine = listOf(yarnCmd, "run", "build")
   }
 }
 
