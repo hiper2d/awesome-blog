@@ -6,7 +6,7 @@ eureka:
       defaultZone: http://localhost:${server.port}/${server.servlet.context-path}/eureka/
 
 server:
-  port: 9002
+  port: 9000
   servlet:
     context-path: /service-discovery
 

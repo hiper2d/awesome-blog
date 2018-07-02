@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+  <input id="username" formControlName="username" type="text" placeholder="Username">
+  <input id="password" formControlName="password" type="password" placeholder="Password">
+  <button [disabled]="form.invalid" (click)="login()">Login</button>
+</div>

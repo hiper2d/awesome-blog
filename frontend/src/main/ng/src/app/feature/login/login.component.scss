@@ -1,0 +1,38 @@
+$element-height: 34px;
+$element-margin-bottom: 16px;
+$element-width: 400px;
+
+:host {
+  left: 50%;
+  margin: (-($element-height*3 + $element-margin-bottom*2)/2) 0 0 (-$element-width/2);
+  position: absolute;
+  top: 50%;
+  width: $element-width;
+}
+
+button {
+  background-color: #636262;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  height: $element-height;
+  line-height: $element-height;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #bdbbbb;
+  cursor: default;
+}
+
+input {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  height: $element-height;
+  line-height: $element-height;
+  margin-bottom: $element-margin-bottom;
+  padding: 0 10px;
+  width: 100%;
+}

@@ -1,0 +1,15 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: authorization
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9000/service-discovery/eureka/

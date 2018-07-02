@@ -2,6 +2,15 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
   "projects": {
     "ng": {
       "root": "",
@@ -21,7 +30,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -71,7 +80,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "assets": [
               "src/assets",
@@ -119,16 +128,6 @@
           }
         }
       }
-    }
-  },
-  "cli": {},
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "css"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
     }
   }
 }

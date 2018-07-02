@@ -5,10 +5,10 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:9002/service-discovery/eureka/
+      defaultZone: http://localhost:9000/service-discovery/eureka/
 
 server:
-  port: 8081
+  port: 9020
   servlet:
     context-path: /blog
 
