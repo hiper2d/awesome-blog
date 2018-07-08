@@ -3,7 +3,7 @@ Awesome blog
 
 [![TravisCI Build](https://travis-ci.org/hiper2d/awesome-blog.svg)](https://travis-ci.org/hiper2d/awesome-blog)
 
-This is a blog site designed with microservices architecture using `Spring Cloud Netflix` features, `Kotlin` as a main server side language and `Angular` for user interface parts. This is a very beginning development phase, so the project contains only few services for now (frontend, backend-api and service discovery) but will grow in future.
+This is a blog site designed with microservices architecture using `Spring Cloud Netflix` features, `Kotlin` as a main server side language and `Angular` for user interface parts. This is a very beginning development phase, so the project contains only few services for now (frontend, backend-api, OAuth2 server and service discovery) but will grow in future.
 
 ##### Client npm dependencies status:
 

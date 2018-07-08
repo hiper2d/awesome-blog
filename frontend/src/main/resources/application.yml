@@ -5,7 +5,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:9000/service-discovery/eureka/
+      defaultZone: http://localhost:9001/service-discovery/eureka/
 
 server:
   port: 9020

@@ -26,7 +26,7 @@ class OAuth2Config @Autowired constructor(
                         "password",
                         "client_credentials"
                 )
-                .scopes("webclient", "mobileclient")
+                .scopes("webclient")
     }
 
     override fun configure(endpoints: AuthorizationServerEndpointsConfigurer) {
