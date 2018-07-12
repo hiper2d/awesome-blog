@@ -22,3 +22,4 @@ zuul:
       path: /api/**
       serviceId: api
       stripPrefix: false
+  sensitiveHeaders: Cookie,Set-Cookie # this excludes Authorization from the default blacklist
