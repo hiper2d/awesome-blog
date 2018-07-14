@@ -7,6 +7,8 @@ eureka:
     service-url:
       defaultZone: http://localhost:9001/service-discovery/eureka/
 
+security.oauth2.resource.jwt.key-value: awesome-key
+
 server:
   port: 9002
   servlet:

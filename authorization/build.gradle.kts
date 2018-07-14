@@ -11,9 +11,13 @@ dependencyManagement {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // Spring Boot
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+    // Spring Security, OAuth2, Web
     implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security:spring-security-jwt")
 
     // These stupid dependencies are required by Spring Security and Java 9/10 to avoid 'NoClassDefFoundError: javax/xml/bind/JAXBException'
     // https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46455026

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -15,19 +16,18 @@ import org.springframework.security.crypto.password.PasswordEncoder
 class SecurityConfig: WebSecurityConfigurerAdapter() {
 
     @Bean
-    override fun authenticationManager(): AuthenticationManager {
-        return super.authenticationManager()
-    }
+    override fun authenticationManager(): AuthenticationManager = super.authenticationManager()
 
     @Bean
-    override fun userDetailsService(): UserDetailsService {
-        return super.userDetailsService()
-    }
+    override fun userDetailsService(): UserDetailsService = super.userDetailsService()
 
     // Use no encoding provider for test purposes
     @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance()
+    fun passwordEncoder(): PasswordEncoder = NoOpPasswordEncoder.getInstance()
+
+    override fun configure(http: HttpSecurity) {
+        http
+                .httpBasic().disable()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

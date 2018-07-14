@@ -8,12 +8,16 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer
+import org.springframework.security.oauth2.provider.token.TokenStore
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
 
 @Configuration
 @EnableAuthorizationServer
 class OAuth2Config @Autowired constructor(
         private val authenticationManager: AuthenticationManager,
-        private val userDetailsService: UserDetailsService
+        private val userDetailsService: UserDetailsService,
+        private val tokenStore: TokenStore,
+        private val jwtAccessTokenConverter: JwtAccessTokenConverter
 ): AuthorizationServerConfigurerAdapter() {
 
     override fun configure(clients: ClientDetailsServiceConfigurer) {
@@ -33,5 +37,7 @@ class OAuth2Config @Autowired constructor(
         endpoints
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
+                .tokenStore(tokenStore)
+                .accessTokenConverter(jwtAccessTokenConverter)
     }
 }
