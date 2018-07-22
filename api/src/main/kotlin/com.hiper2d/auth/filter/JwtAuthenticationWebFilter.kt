@@ -1,44 +1,34 @@
 package com.hiper2d.auth.filter
 
-import com.hiper2d.auth.JwtConfigService
-import com.hiper2d.auth.token.GuestAuthenticationToken
-import com.hiper2d.auth.token.JwtPreAuthenticationToken
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureException
-import org.springframework.http.server.reactive.ServerHttpRequest
-import org.springframework.security.authentication.BadCredentialsException
+import com.hiper2d.auth.converter.AuthenticationTokenConverter
 import org.springframework.security.authentication.ReactiveAuthenticationManager
-import org.springframework.security.core.Authentication
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter
+import org.springframework.security.web.server.context.SecurityContextServerWebExchange
 import org.springframework.web.server.ServerWebExchange
+import org.springframework.web.server.WebFilterChain
+import org.springframework.web.server.adapter.DefaultServerWebExchange
 import reactor.core.publisher.Mono
 
 class JwtAuthenticationWebFilter(
         authenticationManager: ReactiveAuthenticationManager,
-        private val jwtConfig: JwtConfigService
+        authenticationTokenConverter: AuthenticationTokenConverter
 ) : AuthenticationWebFilter(authenticationManager) {
 
     init {
-        setAuthenticationConverter { convert(it) }
+        setAuthenticationConverter(authenticationTokenConverter)
     }
 
-    private fun convert(serverWebExchange: ServerWebExchange): Mono<Authentication?> {
-        return extractJwtToken(serverWebExchange.request)
-    }
-
-    private fun extractJwtToken(request: ServerHttpRequest): Mono<Authentication?> {
-        val bearerRequestHeader: String? = request.headers.getFirst(jwtConfig.tokenHeader)
-        if (bearerRequestHeader != null && bearerRequestHeader.startsWith(jwtConfig.bearerPrefix)) {
-            val token = bearerRequestHeader.substring(jwtConfig.bearerPrefix.length + 1)
-            return try {
-                val claims = Jwts.parser().setSigningKey(jwtConfig.secret).parseClaimsJws(token).body
-                Mono.just(JwtPreAuthenticationToken(claims.subject, token))
-            } catch (ex: SignatureException) {
-                ex.printStackTrace()
-                Mono.error(BadCredentialsException("Invalid token..."))
-            }
-
-        }
-        return Mono.empty()
+    override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
+        /*
+            For some reason all AuthenticationWebFilter implementations are called twice.
+            In each call the exchange context is different:
+            - DefaultServerWebExchange from Spring Web module,
+            - SecurityContextServerWebExchange from Spring Security module.
+            I filter them and keep only one call for SecurityContextServerWebExchange.
+        */
+        return  if (exchange is DefaultServerWebExchange)
+            super.filter(exchange, chain)
+        else
+            chain.filter(exchange)
     }
 }

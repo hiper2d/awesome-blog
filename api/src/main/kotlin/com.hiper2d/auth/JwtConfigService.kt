@@ -1,9 +1,7 @@
 package com.hiper2d.auth
 
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
 
-@Component
 class JwtConfigService {
 
     @Value("\${jwt.header}")

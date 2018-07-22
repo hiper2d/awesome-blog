@@ -18,7 +18,7 @@ class JwtReactiveAuthenticationManager(private val userDetailService: MapReactiv
         return when (token) {
             is GuestAuthenticationToken -> Mono.just(token)
             is JwtPreAuthenticationToken -> personalizeToken(token)
-            else -> Mono.empty()
+            else -> raiseBadCredentials()
         }
     }
 
@@ -27,7 +27,6 @@ class JwtReactiveAuthenticationManager(private val userDetailService: MapReactiv
                 .findByUsername(token.username)
                 .switchIfEmpty(Mono.defer(this::raiseBadCredentials))
                 .map { JwtAuthenticationToken(it.username, it.authorities) as Authentication }
-                .doOnNext { it.isAuthenticated = true }
     }
 
     private fun <T> raiseBadCredentials(): Mono<T> {

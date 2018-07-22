@@ -1,6 +1,6 @@
 package com.hiper2d.auth
 
-import com.hiper2d.auth.filter.GuestAuthenticationWebFilter
+import com.hiper2d.auth.converter.AuthenticationTokenConverter
 import com.hiper2d.auth.filter.JwtAuthenticationWebFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -18,11 +18,11 @@ class WebFluxSecurityConfig {
 
     @Bean fun jwtConfig() = JwtConfigService()
 
+    @Bean fun authenticationTokenConverter() = AuthenticationTokenConverter(jwtConfig())
+
     @Bean fun authenticationManager() = JwtReactiveAuthenticationManager(userDetailsService())
 
-    @Bean fun guestAuthenticationWebFilter() = GuestAuthenticationWebFilter(authenticationManager())
-
-    @Bean fun jwtAuthenticationWebFilter() = JwtAuthenticationWebFilter(authenticationManager(), jwtConfig())
+    @Bean fun jwtAuthenticationWebFilter() = JwtAuthenticationWebFilter(authenticationManager(), authenticationTokenConverter())
 
     @Bean
     fun userDetailsService(): MapReactiveUserDetailsService {
@@ -40,9 +40,9 @@ class WebFluxSecurityConfig {
                 .anyExchange().authenticated()
                 .and()
                 .addFilterAt(jwtAuthenticationWebFilter(), SecurityWebFiltersOrder.AUTHENTICATION)
-                .addFilterAt(guestAuthenticationWebFilter(), SecurityWebFiltersOrder.SECURITY_CONTEXT_SERVER_WEB_EXCHANGE)
                 .formLogin().disable()
                 .httpBasic().disable()
+                .csrf().disable()
                 .build()
     }
 }
