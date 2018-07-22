@@ -16,7 +16,7 @@ class User @JsonCreator(mode=JsonCreator.Mode.PROPERTIES) constructor(
         private val roles: List<String>
 ): UserDetails {
 
-    override fun getAuthorities(): Collection<out GrantedAuthority> = roles.map { SimpleGrantedAuthority(it) }
+    override fun getAuthorities(): Collection<GrantedAuthority> = roles.map { SimpleGrantedAuthority(it) }
 
     override fun isEnabled() = true
 

@@ -3,13 +3,13 @@ package com.hiper2d.auth
 import com.hiper2d.auth.token.GuestAuthenticationToken
 import com.hiper2d.auth.token.JwtAuthenticationToken
 import com.hiper2d.auth.token.JwtPreAuthenticationToken
+import com.hiper2d.repository.UserRepository
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.userdetails.MapReactiveUserDetailsService
 import reactor.core.publisher.Mono
 
-class JwtReactiveAuthenticationManager(private val userDetailService: MapReactiveUserDetailsService): ReactiveAuthenticationManager {
+class JwtReactiveAuthenticationManager(private val userRepository: UserRepository): ReactiveAuthenticationManager {
 
     override fun authenticate(authentication: Authentication): Mono<Authentication> =
             authenticateToken(authentication)
@@ -23,7 +23,7 @@ class JwtReactiveAuthenticationManager(private val userDetailService: MapReactiv
     }
 
     private fun personalizeToken(token: JwtPreAuthenticationToken): Mono<Authentication> {
-        return userDetailService
+        return userRepository
                 .findByUsername(token.username)
                 .switchIfEmpty(Mono.defer(this::raiseBadCredentials))
                 .map { JwtAuthenticationToken(it.username, it.authorities) as Authentication }

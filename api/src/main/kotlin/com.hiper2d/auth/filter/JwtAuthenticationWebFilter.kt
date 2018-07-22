@@ -3,7 +3,6 @@ package com.hiper2d.auth.filter
 import com.hiper2d.auth.converter.AuthenticationTokenConverter
 import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter
-import org.springframework.security.web.server.context.SecurityContextServerWebExchange
 import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.server.WebFilterChain
 import org.springframework.web.server.adapter.DefaultServerWebExchange
@@ -24,7 +23,7 @@ class JwtAuthenticationWebFilter(
             In each call the exchange context is different:
             - DefaultServerWebExchange from Spring Web module,
             - SecurityContextServerWebExchange from Spring Security module.
-            I filter them and keep only one call for SecurityContextServerWebExchange.
+            I filter them and keep only one call for DefaultServerWebExchange.
         */
         return  if (exchange is DefaultServerWebExchange)
             super.filter(exchange, chain)

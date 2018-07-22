@@ -24,20 +24,22 @@ class AuthenticationTokenConverter(
     private fun extractJwtToken(request: ServerHttpRequest): Mono<Authentication> {
         val tokenHeader = request.geTokenHeader()
         if (tokenHeader.isToken()) {
-            val token = tokenHeader!!.substring(jwtConfig.bearerPrefix.length + 1)
-
-            return try {
-                val claims = Jwts.parser().setSigningKey(jwtConfig.secret).parseClaimsJws(token).body
-                Mono.just(JwtPreAuthenticationToken(claims.subject, token) as Authentication)
-            } catch (ex: SignatureException) {
-                ex.printStackTrace()
-                Mono.error(BadCredentialsException("Invalid token..."))
-            }
+            val stringToken = tokenHeader!!.substring(jwtConfig.bearerPrefix.length + 1)
+            return verifyAndBuildTokenObject(stringToken)
         }
         return Mono.empty<Authentication>()
     }
 
-    private fun ServerHttpRequest.geTokenHeader(): String? = this.headers.getFirst(jwtConfig.tokenHeader)
+    private fun verifyAndBuildTokenObject(stringToken: String): Mono<Authentication> =
+        try {
+            val claims = Jwts.parser().setSigningKey(jwtConfig.secret).parseClaimsJws(stringToken).body
+            Mono.just(JwtPreAuthenticationToken(claims.subject, stringToken) as Authentication)
+        } catch (ex: SignatureException) {
+            ex.printStackTrace()
+            Mono.error(BadCredentialsException("Invalid token"))
+        }
+
+    private fun ServerHttpRequest.geTokenHeader(): String? = this.headers.getFirst(jwtConfig.tokenHeaderName)
 
     private fun String?.isToken() = this != null && this.startsWith(jwtConfig.bearerPrefix)
 }
