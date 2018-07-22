@@ -4,7 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {map, tap} from 'rxjs/operators';
 import {ApiConst} from '../../util/api.const';
-import {Credentials} from '../../model/credentials.model';
+import {TokenRequest} from "../../model/token-request.model";
+import {Credentials} from "../../model/credentials.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class AuthService extends AbstractService {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     };
   }
+
+  /*getAnonymousToken(): Observable<any> {
+      const tokenRequest = new TokenRequest();
+      const creds = new Credentials({username: 'frontend', password: 'awesome_secret'});
+      const headers = new HttpHeaders(AuthService.createToken(creds));
+  }*/
 
   authenticate(credentials: Credentials): Observable<any> {
     const headers = new HttpHeaders(credentials ? AuthService.createToken(credentials) : {});

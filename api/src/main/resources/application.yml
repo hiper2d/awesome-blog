@@ -7,7 +7,17 @@ eureka:
     service-url:
       defaultZone: http://localhost:9001/service-discovery/eureka/
 
-security.oauth2.resource.jwt.key-value: awesome-key
+jwt:
+  header: Authorization
+  param: token
+  secret: awesome
+  expiration: 604800000
+  prefix: bearer
+  route:
+    authentication:
+      path: auth
+      token: token
+      refresh: refresh
 
 server:
   port: 9010
