@@ -17,7 +17,7 @@ class WebFluxConfig: WebFluxConfigurer {
         GET("/api/echo").nest {
             accept(MediaType.TEXT_HTML, echoHandler::sayHi)
         }
-        POST("/auth/token").nest {
+        POST("/api/token").nest {
             accept(MediaType.APPLICATION_JSON_UTF8, authHandler::authenticate)
         }
     }

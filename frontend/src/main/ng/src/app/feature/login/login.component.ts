@@ -25,7 +25,9 @@ export class LoginComponent {
   }
 
   login() {
+    console.log(this.form.value);
     this.authService.authenticate(this.form.value).pipe(debounceTime(400)).subscribe(result => {
+        console.log(result);
       if (result) {
         this.router.navigate(['/']);
       } else {

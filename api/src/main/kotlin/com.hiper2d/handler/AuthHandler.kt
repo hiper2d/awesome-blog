@@ -8,7 +8,9 @@ import com.hiper2d.repository.UserRepository
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.http.MediaType
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -36,8 +38,16 @@ class AuthHandler(
     }
 
     private fun findUser(token: JwtAuthenticationRequest) =
-            userRepository.findByUsername(token.username).filter { encoder.matches(token.password, it.password) }
+            userRepository.findByUsername(token.username)
+                    .filter { encoder.matches(token.password, it.password) } //todo: doesn't work, need to learn BCrypt and fix tomorrow
+                    .switchIfEmpty(throwUserNotFoundException())
+
+    private fun throwUserNotFoundException(): Mono<UserDetails> =
+            Mono.error(RuntimeException("Invalid credentials"))
 
     private fun generateJwtToken(it: UserDetails): String =
-            Jwts.builder().setSubject(it.username).signWith(SignatureAlgorithm.HS512, jwtConfig.secret).compact()
+            Jwts.builder()
+                    .setSubject(it.username)
+                    .signWith(SignatureAlgorithm.HS512, jwtConfig.secret)
+                    .compact()
 }

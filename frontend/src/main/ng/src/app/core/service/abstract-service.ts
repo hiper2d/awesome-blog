@@ -9,11 +9,7 @@ export abstract class AbstractService {
     return this.http.post<R>(url, body, {params: params});
   }
 
-  protected textWithHeaders(url: string, headers: HttpHeaders): Observable<any> {
-    return this.http.get(url, {headers: headers, responseType: 'text'});
-  }
-
-  protected text(url: string) {
+  protected text(url: string): Observable<string> {
     return this.http.get(url, {responseType: 'text'});
   }
 }
