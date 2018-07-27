@@ -39,7 +39,7 @@ class AuthHandler(
 
     private fun findUser(token: JwtAuthenticationRequest) =
             userRepository.findByUsername(token.username)
-                    .filter { encoder.matches(token.password, it.password) } //todo: doesn't work, need to learn BCrypt and fix tomorrow
+                    .filter { encoder.matches(token.password, it.password) }
                     .switchIfEmpty(throwUserNotFoundException())
 
     private fun throwUserNotFoundException(): Mono<UserDetails> =
