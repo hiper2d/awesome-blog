@@ -1,0 +1,53 @@
+@import "../../../style/vars";
+
+header {
+  background: $menu-bg-color;
+  box-shadow: 0 6px 22px 0 #9d9da5;
+  box-sizing: border-box;
+  clear: both;
+  height: $header-height;
+  line-height: $header-height;
+  padding: 0 $global-side-padding;
+  position: fixed;
+  width: 100%;
+
+  .left {
+    color: $menu-text-color;
+    float: left;
+    font-family: 'Roboto Mono',arial,monospace;
+  }
+
+  .right {
+    float: right;
+    font-family: 300 16px/$header-height Roboto,arial,sans-serif;
+
+    .menu-item {
+      border-bottom: 3px solid $menu-bg-color;
+      color: $menu-text-color;
+      display: inline-block;
+      font-weight: bold;
+      height: $header-height - 3px;
+      line-height: $header-height - 3px;
+      padding: 0 10px;
+      text-decoration: none;
+      text-transform: uppercase;
+      vertical-align: top;
+    }
+
+    .menu-item:hover {
+      border-bottom-color: #000;
+      color: #000;
+    }
+
+    .menu-active {
+      border-bottom-color: $menu-text-color;
+    }
+  }
+}
+
+.content {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: $header-height;
+  width: $global-width;
+}

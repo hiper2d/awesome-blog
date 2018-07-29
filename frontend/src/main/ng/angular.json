@@ -30,7 +30,9 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/style/global.scss",
+              "src/style/reset.scss",
+              "src/style/vars.scss"
             ],
             "scripts": []
           },
@@ -80,7 +82,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/style/global.scss",
+              "src/style/reset.scss",
+              "src/style/vars.scss"
             ],
             "assets": [
               "src/assets",

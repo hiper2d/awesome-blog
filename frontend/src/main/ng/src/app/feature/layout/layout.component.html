@@ -1,5 +1,16 @@
-<nav class="nav">
-  <a class="nav__link" routerLink="/home" routerLinkActive="_active">Home</a>
-</nav>
+<header>
+  <div class="left">
+    <h1>How I stop drinking and love Java</h1>
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="right">
+    <nav>
+      <a routerLink="/home" class="menu-item" routerLinkActive="menu-active">Blog</a>
+      <a routerLink="/home" class="menu-item" routerLinkActive="menu-active">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

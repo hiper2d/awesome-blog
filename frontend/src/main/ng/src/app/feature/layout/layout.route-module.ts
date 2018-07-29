@@ -8,7 +8,8 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     ]
   }
 ];
