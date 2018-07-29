@@ -42,7 +42,7 @@ allprojects {
         }
 
         withType<BootJar> {
-            mainClassName = "com.hiper2d.App"
+            mainClassName = "com.hiper2d.AppKt"
         }
     }
 }

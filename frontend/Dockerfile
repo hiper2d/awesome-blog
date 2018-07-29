@@ -1,14 +1,11 @@
-FROM openjdk:9-jre-slim
-LABEL maintainer="hiper2d"
+FROM openjdk:10-jre-slim
+MAINTAINER hiper2d <hiper2d@gmail.com>
 
-ARG JAR_NAME
-ARG JAVA_OPTS
 ARG PORT
 
 VOLUME /tmp
 
-ADD $JAR_NAME client.jar
-ENV JAVA_OPTS=$JAVA_OPTS
+COPY build/libs/frontend-1.0.jar /frontend.jar
 EXPOSE $PORT
 
-ENTRYPOINT exec java $JAVA_OPTS -jar /frontend.jar
+ENTRYPOINT exec java -jar frontend.jar
