@@ -1,1 +1,1 @@
-include("api", "frontend", "service-discovery")
+include("api", "config-server", "frontend", "service-discovery")

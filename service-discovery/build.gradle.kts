@@ -1,6 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-import org.springframework.boot.gradle.tasks.run.BootRun
-
 val springCloudVersion: Any? by project
 
 dependencyManagement {

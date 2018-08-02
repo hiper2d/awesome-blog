@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-import org.springframework.boot.gradle.tasks.run.BootRun
 import org.gradle.internal.os.OperatingSystem
 
 val springCloudVersion: Any? by project

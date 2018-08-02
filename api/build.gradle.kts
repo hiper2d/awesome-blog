@@ -1,5 +1,4 @@
-import org.springframework.boot.gradle.tasks.run.BootRun
-
+val jjwtVersion: Any? by project
 val springCloudVersion: Any? by project
 
 dependencyManagement {
@@ -15,11 +14,10 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
     exclude(module = "spring-boot-starter-tomcat")
   }
-  implementation("org.springframework.boot:spring-boot-starter-security")
-  // implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+  implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("io.projectreactor.ipc:reactor-netty")
-  implementation("io.jsonwebtoken:jjwt:0.9.1")
+  implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
 
   // These stupid dependencies are required by Spring Security and Java 9/10 to avoid 'NoClassDefFoundError: javax/xml/bind/JAXBException'
   // https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46455026
