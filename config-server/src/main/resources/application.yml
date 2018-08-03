@@ -6,8 +6,16 @@ server:
 spring:
   application:
     name: config
+
   cloud:
     config:
       server:
         native:
           search-locations: classpath:/config
+
+  profiles:
+    active: native # need this to use classpath config location instead of Git repository
+
+  security:
+    user:
+      password: 123
