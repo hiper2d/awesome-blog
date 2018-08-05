@@ -2,6 +2,7 @@ package com.hiper2d.auth
 
 import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Component
 import java.security.SecureRandom
 import java.util.*
 

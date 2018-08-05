@@ -1,3 +1,4 @@
+val jaxbVersion: Any? by project
 val jjwtVersion: Any? by project
 val springCloudVersion: Any? by project
 
@@ -21,7 +22,6 @@ dependencies {
 
   // These stupid dependencies are required by Spring Security and Java 9/10 to avoid 'NoClassDefFoundError: javax/xml/bind/JAXBException'
   // https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46455026
-  val jaxbVersion = "2.3.0"
   implementation("javax.xml.bind:jaxb-api:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-core:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-impl:$jaxbVersion")

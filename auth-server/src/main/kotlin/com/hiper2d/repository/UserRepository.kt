@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository
 import reactor.core.publisher.Mono
 import javax.annotation.PostConstruct
 
-const val TEMP_PASS = "$2a$14\$qum0p6xapj.hNzJiZPOod.8iQ/tvsZhcnk6qTTS704ptZpdpIfgMW" // password: Qwe123
+const val TEMP_PASS = "\$2a\$14\$qum0p6xapj.hNzJiZPOod.8iQ/tvsZhcnk6qTTS704ptZpdpIfgMW" // password: Qwe123
 
 @Repository
 class UserRepository {

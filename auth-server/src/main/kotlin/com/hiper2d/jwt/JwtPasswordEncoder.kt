@@ -17,8 +17,7 @@ class JwtPasswordEncoder: PasswordEncoder {
         return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt(14, random))
     }
 
-    override fun matches(base64Password: CharSequence, encodedPassword: String): Boolean {
-        val rawPassword = String(Base64.getDecoder().decode(base64Password.toString()))
-        return BCrypt.checkpw(rawPassword, encodedPassword)
+    override fun matches(rawPassword: CharSequence, encodedPassword: String): Boolean {
+        return BCrypt.checkpw(rawPassword.toString(), encodedPassword)
     }
 }

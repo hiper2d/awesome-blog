@@ -1,3 +1,4 @@
+val jaxbVersion: Any? by project
 val jjwtVersion: Any? by project
 val junitJupiterVersion: Any? by project
 val springCloudVersion: Any? by project
@@ -18,6 +19,12 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("io.projectreactor.ipc:reactor-netty")
     implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
+
+    // NoClassDefFoundError: javax/xml/bind/DatatypeConverter workaround
+    implementation("javax.xml.bind:jaxb-api:$jaxbVersion")
+    implementation("com.sun.xml.bind:jaxb-core:$jaxbVersion")
+    implementation("com.sun.xml.bind:jaxb-impl:$jaxbVersion")
+    implementation("javax.activation:activation:1.1.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
