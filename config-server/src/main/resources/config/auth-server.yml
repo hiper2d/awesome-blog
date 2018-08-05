@@ -20,8 +20,16 @@ jwt:
       refresh: refresh
 
 server:
-  port: 9010
+  port: 9002
+  servlet:
+    context-path: /auth
 
 spring:
   application:
-    name: api
+    name: service-discovery
+  cloud:
+    config:
+      uri: http://localhost:9000/config
+      fail-fast: true
+      password: 123
+      username: user

@@ -1,0 +1,13 @@
+eureka.client.enabled: false
+
+jwt:
+  header: Authorization
+  param: token
+  secret: awesome
+  expiration: 604800000
+  prefix: bearer
+  route:
+    authentication:
+      path: auth
+      token: token
+      refresh: refresh

@@ -1,4 +1,11 @@
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/${server.servlet.context-path}/eureka/
+
 server:
   port: 9001
   servlet:
-    context-path: /service-discovery
+    context-path: /discovery

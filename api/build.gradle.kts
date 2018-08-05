@@ -10,7 +10,7 @@ dependencyManagement {
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("org.jetbrains.kotlin:kotlin-reflect") // used by a router in Spring Weblux
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
     exclude(module = "spring-boot-starter-tomcat")
   }

@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: config
+    name: server
 
   cloud:
     config:
