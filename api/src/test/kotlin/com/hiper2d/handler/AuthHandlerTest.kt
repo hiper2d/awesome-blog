@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono
 class AuthHandlerTest: BaseWebTest() {
 
     @Test
-    fun authenticate() {
+    fun shouldRespondWithToken() {
         val req = JwtAuthenticationRequest("hiper2d", "Qwe123")
         webClient.post().uri("token")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -21,9 +21,5 @@ class AuthHandlerTest: BaseWebTest() {
                 .expectStatus().isOk
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
                 .expectBody(JwtAuthenticationResponse::class.java)
-    }
-
-    @Test
-    fun validate() {
     }
 }

@@ -1,5 +1,7 @@
+val activationVersion: Any? by project
 val jaxbVersion: Any? by project
 val jjwtVersion: Any? by project
+val junitJupiterVersion: Any? by project
 val springCloudVersion: Any? by project
 
 dependencyManagement {
@@ -15,8 +17,9 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
     exclude(module = "spring-boot-starter-tomcat")
   }
-  implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
   implementation("org.springframework.boot:spring-boot-starter-security")
+  implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+  implementation("org.springframework.cloud:spring-cloud-starter-config")
   implementation("io.projectreactor.ipc:reactor-netty")
   implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
 
@@ -25,5 +28,11 @@ dependencies {
   implementation("javax.xml.bind:jaxb-api:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-core:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-impl:$jaxbVersion")
-  implementation("javax.activation:activation:1.1.1")
+  implementation("javax.activation:activation:$activationVersion")
+
+  testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    exclude(module = "junit")
+  }
+  testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }

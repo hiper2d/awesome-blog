@@ -1,6 +1,6 @@
 spring:
   application:
-    name: auth-server
+    name: api
 
   cloud:
     config:

@@ -21,4 +21,4 @@ zuul:
     api:
       path: /api/**
       serviceId: api
-      stripPrefix: false
+      stripPrefix: true
