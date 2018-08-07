@@ -14,7 +14,7 @@ class AuthHandlerTest: BaseWebTest() {
     @Test
     fun shouldRespondWithToken() {
         val req = JwtAuthenticationRequest("hiper2d", "Qwe123")
-        webClient.post().uri("token")
+        webClient.post().uri("api/token")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .body(BodyInserters.fromPublisher(Mono.just(req), JwtAuthenticationRequest::class.java))
                 .exchange()

@@ -18,18 +18,3 @@ jwt:
       path: auth
       token: token
       refresh: refresh
-
-server:
-  port: 9010
-  servlet:
-    context-path: /api
-
-spring:
-  application:
-    name: service-discovery
-  cloud:
-    config:
-      uri: http://localhost:9000/config
-      fail-fast: true
-      password: 123
-      username: user
