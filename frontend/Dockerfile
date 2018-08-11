@@ -1,4 +1,4 @@
-FROM openjdk:10-jre-slim
+FROM openjdk:8-jre-alpine
 MAINTAINER hiper2d <hiper2d@gmail.com>
 
 ARG PORT

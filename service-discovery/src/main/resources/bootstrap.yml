@@ -4,7 +4,7 @@ spring:
 
   cloud:
     config:
-      uri: http://localhost:9000/config
+      uri: http://config
       fail-fast: true
       password: 123
       username: user
