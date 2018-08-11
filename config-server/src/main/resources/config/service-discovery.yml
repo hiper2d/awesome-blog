@@ -3,6 +3,6 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://discovery/eureka/
+      defaultZone: http://localhost/eureka/
 
 server.port: 80

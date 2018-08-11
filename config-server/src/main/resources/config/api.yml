@@ -18,3 +18,5 @@ jwt:
       path: auth
       token: token
       refresh: refresh
+
+server.port: 80
