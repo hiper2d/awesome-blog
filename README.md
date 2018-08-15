@@ -20,6 +20,11 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 * Doker
 
 ##### Prerequisites
-1. Gradle 4.8
-3. Node 8 + Yarn
-4. JRE 8+
+1. Node 8+
+2. Yarn
+3. JRE 8+
+4. Docker
+
+##### Services architecture:
+
+![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/uml/blog.png)
