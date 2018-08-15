@@ -25,6 +25,6 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 3. JRE 8+
 4. Docker
 
-##### Services architecture:
+### Services architecture:
 
-![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/uml/blog.png)
+![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/uml/services-diagram.png)
