@@ -22,9 +22,9 @@ class AuthenticationTokenConverter(
                     .switchIfEmpty(Mono.just(GuestAuthenticationToken()))
 
     private fun extractJwtToken(request: ServerHttpRequest): Mono<Authentication> {
-        val tokenHeader = request.geTokenHeader()
-        if (tokenHeader.isToken()) {
-            val stringToken = tokenHeader!!.substring(jwtConfig.bearerPrefix.length + 1)
+        val tokenHeader = request.getTokenHeader()
+        if (tokenHeader != null && tokenHeader.isToken()) {
+            val stringToken = tokenHeader.getToken()
             return verifyAndBuildTokenObject(stringToken)
         }
         return Mono.empty<Authentication>()
@@ -39,7 +39,9 @@ class AuthenticationTokenConverter(
             Mono.error(BadCredentialsException("Invalid token"))
         }
 
-    private fun ServerHttpRequest.geTokenHeader(): String? = this.headers.getFirst(jwtConfig.tokenHeaderName)
+    private fun ServerHttpRequest.getTokenHeader(): String? = this.headers.getFirst(jwtConfig.tokenHeaderName)
 
-    private fun String?.isToken() = this != null && this.startsWith(jwtConfig.bearerPrefix)
+    private fun String.isToken() = this.startsWith(jwtConfig.bearerPrefix)
+
+    private fun String.getToken() = this.substring(jwtConfig.bearerPrefix.length + 1)
 }
