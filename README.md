@@ -14,6 +14,7 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 * Spring Framework 5 with Webflux/Reactor
 * Spring Boot 2.0
 * Spring Cloud Netflix 2.0
+* Spring Webflux Security with JWT
 * Kotlin 1.2
 * Angular 6
 * Gradle 4.8 with Kotlin Script and jUnit 5
