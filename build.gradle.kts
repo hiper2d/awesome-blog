@@ -5,14 +5,12 @@ plugins {
     val kotlinVersion = "1.2.60"
     val springBootVersion = "2.0.4.RELEASE"
     val springDependencyManagementVersion = "1.0.5.RELEASE"
-    val dockerPluginVersion = "3.6.0"
 
     base
     kotlin("jvm") version kotlinVersion apply false
     id("org.springframework.boot") version springBootVersion apply false
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion apply false
     id("io.spring.dependency-management") version springDependencyManagementVersion apply false
-    id("com.bmuschko.docker-spring-boot-application") version dockerPluginVersion apply false
 }
 
 allprojects {
@@ -24,7 +22,6 @@ allprojects {
         plugin("org.springframework.boot")
         plugin("org.jetbrains.kotlin.plugin.spring")
         plugin("io.spring.dependency-management")
-        plugin("com.bmuschko.docker-spring-boot-application")
     }
 
     repositories {
