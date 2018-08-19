@@ -1,3 +1,5 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+
 val activationVersion: Any? by project
 val jaxbVersion: Any? by project
 val jjwtVersion: Any? by project
@@ -10,6 +12,15 @@ dependencyManagement {
     // spring-boot-dependencies bom is already included via spring-boot-gradle-plugin
   }
 }
+
+tasks {
+  "buildDockerImage"(type = DockerBuildImage::class) {
+    inputDir = file(".")
+    tag = "hiper2d/api:latest"
+  }
+}
+
+tasks.findByName("build")?.finalizedBy("buildDockerImage")
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

@@ -11,6 +11,7 @@ plugins {
     id("org.springframework.boot") version springBootVersion apply false
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion apply false
     id("io.spring.dependency-management") version springDependencyManagementVersion apply false
+    id("com.bmuschko.docker-remote-api") version "3.6.0" apply false
 }
 
 allprojects {
@@ -22,6 +23,7 @@ allprojects {
         plugin("org.springframework.boot")
         plugin("org.jetbrains.kotlin.plugin.spring")
         plugin("io.spring.dependency-management")
+        plugin("com.bmuschko.docker-remote-api")
     }
 
     repositories {

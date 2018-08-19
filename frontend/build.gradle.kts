@@ -1,3 +1,4 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import org.gradle.internal.os.OperatingSystem
 
 val springCloudVersion: Any? by project
@@ -20,6 +21,10 @@ tasks {
   "yarnBuild"(type = Exec::class) {
     workingDir = file("src/main/ng")
     commandLine = listOf(yarnCmd, "run", "build")
+  }
+  "buildDockerImage"(type = DockerBuildImage::class) {
+    inputDir = file(".")
+    tag = "hiper2d/frontend:latest"
   }
 }
 
