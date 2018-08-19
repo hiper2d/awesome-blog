@@ -8,3 +8,13 @@ spring:
       fail-fast: true
       password: 123
       username: user
+
+---
+spring:
+  profiles: local
+  cloud:
+    config:
+      uri: http://localhost:9000
+      fail-fast: true
+      password: 123
+      username: user
