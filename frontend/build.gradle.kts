@@ -30,6 +30,7 @@ tasks {
 
 tasks.findByName("yarnBuild")?.dependsOn("yarnInstall")
 tasks.findByName("compileKotlin")?.finalizedBy("yarnBuild")
+tasks.findByName("build")?.finalizedBy("buildDockerImage")
 
 dependencyManagement {
   imports {
@@ -39,7 +40,7 @@ dependencyManagement {
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.cloud:spring-cloud-starter-config")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-zuul")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 }

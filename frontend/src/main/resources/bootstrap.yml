@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: frontend
+
+  cloud:
+    config:
+      uri: http://config
+      fail-fast: true
+      password: 123
+      username: user
