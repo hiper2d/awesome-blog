@@ -5,11 +5,14 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import reactor.core.publisher.Mono
+import java.util.*
 
 @Component
 class EchoHandler {
 
+    private val randomNumerToTestBalancer: Int = Random().nextInt()
+
     fun sayHi(req: ServerRequest) = ok()
             .contentType(MediaType.TEXT_HTML)
-            .body(Mono.just("Hey"), String::class.java)
+            .body(Mono.just("Hey ($randomNumerToTestBalancer)"), String::class.java)
 }
