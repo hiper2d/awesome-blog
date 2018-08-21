@@ -3,7 +3,7 @@ Awesome blog
 
 [![TravisCI Build](https://travis-ci.org/hiper2d/awesome-blog.svg)](https://travis-ci.org/hiper2d/awesome-blog)
 
-This is a blog site designed with microservices architecture using `Spring Cloud Netflix` features, `Kotlin` as a main server side language and `Angular` for user interface parts. This is a very beginning development phase, so the project contains only few services for now (frontend, backend api, config server, service discovery) but will grow in future.
+This is a blog site designed with microservices architecture using `Spring Cloud Netflix` features, `Kotlin` as a main server side language and `Angular` for user interface parts.
 
 ##### Client npm dependencies status:
 
@@ -29,3 +29,8 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 ## Microservices architecture:
 
 ![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/uml/services-diagram.png)
+
+- **Config Server**: A Spring Boot application which provides configs (yml files) to all other services. Should be run first.
+- **Service Discovery**: A Spring Boot application with embedded `Service Discovery Server` (Eureka server). Each other services except `Config Server` are registered in it and can access each other by names instead of host-port combination using `Api Gateway Router` service. Should be run second.
+- **Frontend**: Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
+- **Api**: Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
