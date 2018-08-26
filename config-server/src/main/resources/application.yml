@@ -1,3 +1,5 @@
+logging.config: classpath:log4j2-docker.xml
+
 server.port: 80
 
 spring:
@@ -16,3 +18,12 @@ spring:
   security:
     user:
       password: 123
+
+---
+spring:
+  profiles:
+    active: local
+
+logging.config: classpath:log4j2-local.xml
+
+server.port: 9000
