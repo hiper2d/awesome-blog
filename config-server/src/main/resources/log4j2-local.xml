@@ -5,14 +5,25 @@
             %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
         </Property>
     </Properties>
+
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-    </Appenders>
+
+        <RollingFile name="FileAppender" fileName="../logs/config-server.log" filePattern="../logs/archive/config-server-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>config-server.log
+
     <Loggers>
-        <Root level="debug">
+        <Root level="info">
             <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender"/>
         </Root>
     </Loggers>
 </Configuration>

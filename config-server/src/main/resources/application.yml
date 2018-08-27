@@ -21,8 +21,7 @@ spring:
 
 ---
 spring:
-  profiles:
-    active: local
+  profiles: local
 
 logging.config: classpath:log4j2-local.xml
 
