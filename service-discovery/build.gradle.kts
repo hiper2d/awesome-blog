@@ -1,8 +1,8 @@
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
-val activationVersion: Any? by project
-val jaxbVersion: Any? by project
-val springCloudVersion: Any? by project
+val activationVersion: String by project
+val jaxbVersion: String by project
+val springCloudVersion: String by project
 
 dependencyManagement {
   imports {
@@ -11,13 +11,13 @@ dependencyManagement {
 }
 
 tasks {
-    "buildDockerImage"(type = DockerBuildImage::class) {
+    create<DockerBuildImage>("buildDockerImage") {
         inputDir = file(".")
         tag = "hiper2d/discovery:latest"
     }
 }
 
-tasks.findByName("build")?.finalizedBy("buildDockerImage")
+tasks["build"].finalizedBy("buildDockerImage")
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

@@ -1,6 +1,6 @@
 import com.bmuschko.gradle.docker.tasks.image.*
 
-val springCloudVersion: Any? by project
+val springCloudVersion: String by project
 
 dependencyManagement {
     imports {
@@ -9,13 +9,13 @@ dependencyManagement {
 }
 
 tasks {
-    "buildDockerImage"(type = DockerBuildImage::class) {
+    create<DockerBuildImage>("buildDockerImage") {
         inputDir = file(".")
         tag = "hiper2d/config:latest"
     }
 }
 
-tasks.findByName("build")?.finalizedBy("buildDockerImage")
+tasks["build"].finalizedBy("buildDockerImage")
 
 configurations.all {
     exclude(module = "spring-boot-starter-logging")
