@@ -18,6 +18,10 @@ allprojects {
     group = "com.hiper2d"
     version = "1.0"
 
+    configurations.all {
+        exclude(module = "spring-boot-starter-logging")
+    }
+
     apply {
         plugin("org.jetbrains.kotlin.jvm")
         plugin("org.springframework.boot")

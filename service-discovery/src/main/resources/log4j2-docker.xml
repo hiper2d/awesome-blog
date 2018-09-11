@@ -11,7 +11,7 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingFile name="FileAppender" fileName="/logs/config-server.log" filePattern="/logs/archive/config-server-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="FileAppender" fileName="/logs/service-discovery.log" filePattern="/logs/archive/service-discovery-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10MB" />

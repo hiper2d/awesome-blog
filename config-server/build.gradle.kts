@@ -1,5 +1,6 @@
 import com.bmuschko.gradle.docker.tasks.image.*
 
+val disruptorVersion: String by project
 val springCloudVersion: String by project
 
 dependencyManagement {
@@ -17,14 +18,10 @@ tasks {
 
 tasks["build"].finalizedBy("buildDockerImage")
 
-configurations.all {
-    exclude(module = "spring-boot-starter-logging")
-}
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
     implementation("org.springframework.cloud:spring-cloud-config-server")
-    implementation("com.lmax:disruptor:3.3.6") // Log4j2 async appender
+    implementation("com.lmax:disruptor:$disruptorVersion") // Log4j2 async appender
 }
