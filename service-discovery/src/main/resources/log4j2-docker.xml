@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="30">
+<Configuration status="WARN">
     <Properties>
         <Property name="LOG_PATTERN">
-            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} - [%15.15t] %-40.40c{1.} : %m%n%ex
         </Property>
     </Properties>
 
@@ -11,19 +11,20 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingFile name="FileAppender" fileName="/logs/service-discovery.log" filePattern="/logs/archive/service-discovery-%d{yyyy-MM-dd}-%i.log">
+        <RollingRandomAccessFile name="RollingRandomAccessFileAppender" fileName="/logs/service-discovery.log"
+                                 filePattern="/logs/archive/service-discovery.log.%d{yyyy-MM-dd-hh-mm}.gz">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
-                <SizeBasedTriggeringPolicy size="10MB" />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
-            <DefaultRolloverStrategy max="10"/>
-        </RollingFile>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
     </Appenders>
 
     <Loggers>
-        <Root level="info">
-            <AppenderRef ref="ConsoleAppender" />
-            <AppenderRef ref="FileAppender"/>
-        </Root>
+        <AsyncRoot level="debug">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="RollingRandomAccessFileAppender"/>
+        </AsyncRoot>
     </Loggers>
 </Configuration>

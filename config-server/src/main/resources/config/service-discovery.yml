@@ -1,9 +1,11 @@
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://discovery/eureka/
+      defaultZone: http://discovery/eureka
 
 logging.config: classpath:log4j2-docker.xml
 

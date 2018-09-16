@@ -11,7 +11,7 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingRandomAccessFile name="RollingRandomAccessFileAppender" fileName="logs/service-discovery-async.log"
+        <RollingRandomAccessFile name="RollingRandomAccessFileAppender" fileName="logs/service-discovery.log"
                                  filePattern="logs/archive/service-discovery.log.%d{yyyy-MM-dd-hh-mm}.gz">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>

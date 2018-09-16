@@ -11,8 +11,8 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingRandomAccessFile name="RollingRandomAccessFileAppender" fileName="logs/config-server.log"
-                                 filePattern="logs/archive/config-server.log.%d{yyyy-MM-dd-hh-mm}.gz">
+        <RollingRandomAccessFile name="RollingRandomAccessFileAppender" fileName="/logs/api.log"
+                                 filePattern="/logs/archive/api.log.%d{yyyy-MM-dd-hh-mm}.gz">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
