@@ -5,6 +5,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:9001/eureka/
+      defaultZone: http://localhost:9001/eureka
+
+logging.config: classpath:log4j2-local.xml
 
 server.port: 8082
