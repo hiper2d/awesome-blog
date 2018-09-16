@@ -1,7 +1,6 @@
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
 val activationVersion: String by project
-val disruptorVersion: String by project
 val jaxbVersion: String by project
 val jjwtVersion: String by project
 val junitJupiterVersion: String by project
@@ -10,7 +9,6 @@ val springCloudVersion: String by project
 dependencyManagement {
   imports {
     mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
-    // spring-boot-dependencies bom is already included via spring-boot-gradle-plugin
   }
 }
 
@@ -21,21 +19,15 @@ tasks {
   }
 }
 
-tasks["build"].finalizedBy("buildDockerImage")
-
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.jetbrains.kotlin:kotlin-reflect") // used by a router in Spring Weblux
-  implementation("org.springframework.boot:spring-boot-starter-log4j2")
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
     exclude(module = "spring-boot-starter-tomcat")
   }
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-  implementation("org.springframework.cloud:spring-cloud-starter-config")
   implementation("io.projectreactor.ipc:reactor-netty")
   implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
-  implementation("com.lmax:disruptor:$disruptorVersion")
 
   // These stupid dependencies are required by Spring Security and Java 9/10 to avoid 'NoClassDefFoundError: javax/xml/bind/JAXBException'
   // https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46455026

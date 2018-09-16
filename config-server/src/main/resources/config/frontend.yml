@@ -5,7 +5,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://discovery/eureka/
+      defaultZone: http://discovery/eureka
+
+logging.config: classpath:log4j2-docker.xml
 
 server.port: 80
 
