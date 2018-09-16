@@ -3,12 +3,13 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     val kotlinVersion = "1.2.70"
-    val springBootVersion = "2.0.4.RELEASE"
+    val springBootVersion = "2.0.5.RELEASE"
     val springDependencyManagementVersion = "1.0.6.RELEASE"
 
     base
     kotlin("jvm") version kotlinVersion
     id("io.spring.dependency-management") version springDependencyManagementVersion
+
     id("org.springframework.boot") version springBootVersion apply false
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion apply false
     id("com.bmuschko.docker-remote-api") version "3.6.0" apply false
@@ -29,10 +30,6 @@ dependencyManagement {
 }
 
 subprojects {
-    val kotlinVersion = "1.2.70"
-    val springBootVersion = "2.0.4.RELEASE"
-    val springDependencyManagementVersion = "1.0.6.RELEASE"
-
     group = "com.hiper2d"
     version = "1.0"
 
