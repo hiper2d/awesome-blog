@@ -10,9 +10,9 @@ import java.util.*
 @Component
 class EchoHandler {
 
-    private val randomNumerToTestBalancer: Int = Random().nextInt()
+    private val randomNumberToTestBalancer: Int = Random().nextInt()
 
     fun sayHi(req: ServerRequest) = ok()
             .contentType(MediaType.TEXT_HTML)
-            .body(Mono.just("Hey ($randomNumerToTestBalancer)"), String::class.java)
+            .body(Mono.just("Hey ($randomNumberToTestBalancer)"), String::class.java)
 }

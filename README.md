@@ -17,7 +17,7 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 * Spring Webflux Security with JWT
 * Kotlin 1.2
 * Angular 6
-* Gradle 4.9 with Kotlin Script and jUnit 5
+* Gradle 4.10 with Kotlin Script and jUnit 5
 * Docker
 
 ##### Prerequisites
