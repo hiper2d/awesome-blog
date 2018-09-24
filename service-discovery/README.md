@@ -1,3 +1,7 @@
 # Service Discovery
 
-Eureka server.
+A minimal Eureka server.
+
+## Screenshot
+
+![Google Chrome](../screenshots/eureka.png)
