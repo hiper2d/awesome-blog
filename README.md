@@ -34,3 +34,38 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 - **Service Discovery**: A Spring Boot application with embedded `Service Discovery Server` (Eureka server). Each other services except `Config Server` are registered in it and can access each other by names instead of host-port combination using `Api Gateway Router` service. Should be run second.
 - **Frontend**: Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
 - **Api**: Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
+
+## How to run?
+
+### Local environment
+
+1. Set environment variables
+
+       SPRING_PROFILES_ACTIVE=local
+       SPRING_CLOUD_CONFIG_SERVER_GIT_URI=<path-to-config-repo>
+
+   where <path-to-config-repo> can be a path to remote or local git repository with config files, e.g. `file://${user.home}/awesome-blog-config-repo` or `https://github.com/naXa777/awesome-blog-config-repo`.
+
+2. Run Config Server
+
+       ./gradlew config-server:bootRun
+
+   Check that it's running: go to http://localhost:9000/actuator/health
+
+3. Run Service Discovery
+
+       ./gradlew service-discovery:bootRun
+
+   Check that it's running: go to http://localhost:9001/
+
+4. Run API
+
+       ./gradlew api:bootRun
+
+   Check that it's running: go to http://localhost:8081/api/echo
+
+4. Run Frontend
+
+       ./gradlew frontend:bootRun
+
+   Check that it's running: go to http://localhost:8082
