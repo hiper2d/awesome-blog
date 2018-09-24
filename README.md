@@ -32,8 +32,8 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 
 - **Config Server**: A Spring Boot application which provides configs (yml files) to all other services. Should be run first.
 - **Service Discovery**: A Spring Boot application with embedded `Service Discovery Server` (Eureka server). Each other services except `Config Server` are registered in it and can access each other by names instead of host-port combination using `Api Gateway Router` service. Should be run second.
-- **Frontend**: Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
-- **Api**: Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
+- **Frontend**: A Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
+- **API**: A Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
 
 ## How to run?
 
@@ -44,27 +44,27 @@ This is a blog site designed with microservices architecture using `Spring Cloud
        SPRING_PROFILES_ACTIVE=local
        SPRING_CLOUD_CONFIG_SERVER_GIT_URI=<path-to-config-repo>
 
-   where <path-to-config-repo> can be a path to remote or local git repository with config files, e.g. `file://${user.home}/awesome-blog-config-repo` or `https://github.com/naXa777/awesome-blog-config-repo`.
+   where `<path-to-config-repo>` can be a path to local or remote git repository with config files, e.g. `file://${user.home}/awesome-blog-config-repo` or `https://github.com/naXa777/awesome-blog-config-repo`.
 
-2. Run Config Server
+2. Run Config Server instance
 
        ./gradlew config-server:bootRun
 
    Check that it's running: go to http://localhost:9000/actuator/health
 
-3. Run Service Discovery
+3. Run Service Discovery instance
 
        ./gradlew service-discovery:bootRun
 
    Check that it's running: go to http://localhost:9001/
 
-4. Run API
+4. Run API instance
 
        ./gradlew api:bootRun
 
    Check that it's running: go to http://localhost:8081/api/echo
 
-4. Run Frontend
+4. Run Frontend instance
 
        ./gradlew frontend:bootRun
 
