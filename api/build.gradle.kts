@@ -20,7 +20,7 @@ tasks {
 }
 
 dependencies {
-  implementation("org.jetbrains.kotlin:kotlin-reflect") // used by a router in Spring Weblux
+  implementation("org.jetbrains.kotlin:kotlin-reflect") // used by a router in Spring WebFlux
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
     exclude(module = "spring-boot-starter-tomcat")
   }
