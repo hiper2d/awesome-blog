@@ -41,10 +41,7 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 
 1. Set environment variables
 
-       SPRING_PROFILES_ACTIVE=local
-       SPRING_CLOUD_CONFIG_SERVER_GIT_URI=<path-to-config-repo>
-
-   where `<path-to-config-repo>` can be a path to local or remote git repository with config files, e.g. `file://${user.home}/awesome-blog-config-repo` or `https://github.com/hiper2d/awesome-blog-config-repo`.
+       SPRING_PROFILES_ACTIVE=local,native
 
 2. Run Config Server instance
 
