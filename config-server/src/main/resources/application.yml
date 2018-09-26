@@ -10,7 +10,7 @@ spring:
     config:
       server:
         native:
-          search-locations: classpath:/config
+          search-locations: file:./configs
 
   profiles:
     active: native # need this to use classpath config location instead of Git repository
