@@ -35,7 +35,9 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 - **Frontend**: A Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
 - **API**: A Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
 
-## How to run?
+The diagram is created with the help of [draw.io](draw.io)
+
+## How to run
 
 ### Local environment
 
@@ -66,3 +68,37 @@ This is a blog site designed with microservices architecture using `Spring Cloud
        ./gradlew frontend:bootRun
 
    Check that it's running: go to http://localhost:8082
+
+### Docker containers
+
+0. Build all applications and create Docker images
+
+        ./gradlew clean build
+
+1. Create a custom bridge network if it's not created
+
+        docker network create --driver bridge awesome-blog
+        
+2. Run the config server container with mounted logs and configs directories
+
+        docker run --name config --net awesome-blog -v $(pwd)/logs:/logs -v $(pwd)/configs:/configs hiper2d/config  
+        
+3. Run the service discovery container 
+
+        docker run --name discovery --net awesome-blog -v $(pwd)/logs:/logs hiper2d/discovery
+
+4. Run the backend container   
+
+        docker run --name api --net awesome-blog -v $(pwd)/logs:/logs hiper2d/api
+   
+5. Run the frontend container exposing the post 8082 and check it running at http://localhost:8082
+
+        docker run --name frontend --net awesome-blog -p 8082:80 -v $(pwd)/logs:/logs hiper2d/frontend  
+        
+## Roadmap
+
+- add Docker Compose;
+- add Mongodb to the Api service;
+- start creating user interfaces;
+- add Logstash, Elasticsearch, Kibana stack for advanced logging;
+- etc.
