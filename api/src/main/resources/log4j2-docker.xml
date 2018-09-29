@@ -22,7 +22,7 @@
     </Appenders>
 
     <Loggers>
-        <AsyncRoot level="debug">
+        <AsyncRoot level="info">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="RollingRandomAccessFileAppender"/>
         </AsyncRoot>

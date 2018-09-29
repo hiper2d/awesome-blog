@@ -91,7 +91,7 @@ The diagram is created with the help of [draw.io](draw.io)
 
         docker run --name api --net awesome-blog -v $(pwd)/logs:/logs hiper2d/api
    
-5. Run the frontend container exposing the post 8082 and check it running at http://localhost:8082
+5. Run the frontend container exposing the 8082 port and check it running at http://localhost:8082
 
         docker run --name frontend --net awesome-blog -p 8082:80 -v $(pwd)/logs:/logs hiper2d/frontend  
         
