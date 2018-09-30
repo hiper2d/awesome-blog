@@ -29,8 +29,9 @@ dependencies {
   implementation("io.projectreactor.ipc:reactor-netty")
   implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
 
-  // These stupid dependencies are required by Spring Security and Java 9/10 to avoid 'NoClassDefFoundError: javax/xml/bind/JAXBException'
-  // https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46455026
+  // The JAXB APIs are considered to be Java EE APIs, and therefore are no longer contained on the default class path in Java SE 9.
+  // In Java 11 they are completely removed from the JDK. They are used by Spring Security hence I have to add them manually.
+  // Details: https://stackoverflow.com/a/43574427/2349970
   implementation("javax.xml.bind:jaxb-api:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-core:$jaxbVersion")
   implementation("com.sun.xml.bind:jaxb-impl:$jaxbVersion")

@@ -20,8 +20,9 @@ tasks {
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 
-    // Solving an error for Java 9 and JAXB dependencies: Type javax.xml.bind.JAXBContext not present
-    // See details: https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j/46484873
-    implementation("org.glassfish.jaxb:jaxb-runtime:$jaxbVersion")
+    // Details about these four libs: https://stackoverflow.com/a/43574427/2349970
+    implementation("javax.xml.bind:jaxb-api:$jaxbVersion")
+    implementation("com.sun.xml.bind:jaxb-core:$jaxbVersion")
+    implementation("com.sun.xml.bind:jaxb-impl:$jaxbVersion")
     implementation("javax.activation:activation:$activationVersion")
 }
