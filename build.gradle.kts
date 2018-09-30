@@ -73,6 +73,7 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.springframework.boot:spring-boot-starter-log4j2")
         implementation("org.springframework.cloud:spring-cloud-config-client")
+        implementation("org.springframework.retry:spring-retry") // Reconnect to Config Server
         implementation("com.lmax:disruptor:$disruptorVersion") // Log4j2 async appender
     }
 }

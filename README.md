@@ -35,70 +35,90 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 - **Frontend**: A Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
 - **API**: A Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
 
-The diagram is created with the help of [draw.io](draw.io)
+The diagram is created with the help of [draw.io](http://draw.io)
 
 ## How to run
 
+All applications should be build before running:
+   
+       ./gradlew clean build
+
+This also creates Docker images for applications
+
 ### Local environment
 
-1. Set environment variables
+1. Set environment variables:
 
        SPRING_PROFILES_ACTIVE=local,native
 
-2. Run Config Server instance
+2. Run Config Server instance:
 
        ./gradlew config-server:bootRun
 
    Check that it's running: go to http://localhost:9000/actuator/health
 
-3. Run Service Discovery instance
+3. Run Service Discovery instance:
 
        ./gradlew service-discovery:bootRun
 
-   Check that it's running: go to http://localhost:9001/
+   Check that it's running: go to http://localhost:9001
 
-4. Run API instance
+4. Run API instance:
 
        ./gradlew api:bootRun
 
    Check that it's running: go to http://localhost:8081/api/echo
 
-4. Run Frontend instance
+4. Run Frontend instance:
 
        ./gradlew frontend:bootRun
 
    Check that it's running: go to http://localhost:8082
 
+### Docker compose
+
+1. Remove containers from previous runs:
+
+        docker-compose rm
+
+2. Run everything:
+
+        docker-compose up
+
+   Check it running at http://localhost:8082
+
 ### Docker containers
 
-0. Build all applications and create Docker images
+0. Remove named containers from previous runs:
 
-        ./gradlew clean build
+        docker rm {config,discovery,api,frontend}
 
-1. Create a custom bridge network if it's not created
+1. Create a custom bridge network if it's not created:
 
-        docker network create --driver bridge awesome-blog
+        docker network create --driver bridge awesome-network
         
-2. Run the config server container with mounted logs and configs directories
+2. Run the config server container with mounted logs and configs directories:
 
-        docker run --name config --net awesome-blog -v $(pwd)/logs:/logs -v $(pwd)/configs:/configs hiper2d/config  
+        docker run --name config --net awesome-network -v $(pwd)/logs:/logs -v $(pwd)/configs:/configs hiper2d/config  
         
-3. Run the service discovery container 
+3. Run the service discovery container:
 
-        docker run --name discovery --net awesome-blog -v $(pwd)/logs:/logs hiper2d/discovery
+        docker run --name discovery --net awesome-network -v $(pwd)/logs:/logs hiper2d/discovery
 
-4. Run the backend container   
+4. Run the backend container:
 
-        docker run --name api --net awesome-blog -v $(pwd)/logs:/logs hiper2d/api
+        docker run --name api --net awesome-network -v $(pwd)/logs:/logs hiper2d/api
    
-5. Run the frontend container exposing the 8082 port and check it running at http://localhost:8082
+5. Run the frontend container exposing the 8082 port:
 
-        docker run --name frontend --net awesome-blog -p 8082:80 -v $(pwd)/logs:/logs hiper2d/frontend  
+        docker run --name frontend --net awesome-network -p 8082:80 -v $(pwd)/logs:/logs hiper2d/frontend  
+
+   Check it running at http://localhost:8082
         
 ## Roadmap
 
-- add Docker Compose;
-- add Mongodb to the Api service;
-- start creating user interfaces;
-- add Logstash, Elasticsearch, Kibana stack for advanced logging;
-- etc.
+- ~~add Docker Compose~~
+- add Mongodb to the Api service
+- start creating user interfaces
+- add Logstash, Elasticsearch, Kibana stack for advanced logging
+- etc

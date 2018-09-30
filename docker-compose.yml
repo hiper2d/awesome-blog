@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+
+  config:
+    build: ./config-server
+    container_name: config
+    image: hiper2d/config
+    networks:
+      - awesome-network
+    ports:
+    - 9000:80
+    volumes:
+      - ./logs:/logs
+      - ./configs:/configs
+
+  discovery:
+    build: ./service-discovery
+    container_name: discovery
+    depends_on:
+      - config
+    image: hiper2d/discovery
+    networks:
+      - awesome-network
+    ports:
+      - 9001:80
+    volumes:
+      - ./logs:/logs
+
+  api:
+    build: ./api
+    container_name: api
+    depends_on:
+      - config
+      - discovery
+    image: hiper2d/api
+    networks:
+      - awesome-network
+    ports:
+      - 8081:80
+    volumes:
+      - ./logs:/logs
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - config
+      - discovery
+    image: hiper2d/frontend
+    networks:
+      - awesome-network
+    ports:
+      - 8082:80
+    volumes:
+      - ./logs:/logs
+
+networks:
+  awesome-network:
+    name: awesome-network
+    driver: bridge

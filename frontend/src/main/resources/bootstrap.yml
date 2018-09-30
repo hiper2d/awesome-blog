@@ -8,13 +8,21 @@ spring:
       fail-fast: true
       password: 123
       username: user
+      retry:
+        initial-interval: 5000 # initial retry interval in milliseconds (5 sec)
+        max-attempts: 100
+        max-interval: 120000 # max retry interval in milliseconds (2 min)
+        multiplier: 1.5
 
 ---
 spring:
   profiles: local
+
   cloud:
     config:
       uri: http://localhost:9000
       fail-fast: true
       password: 123
       username: user
+      retry:
+        max-attempts: 1
