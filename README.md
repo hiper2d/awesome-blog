@@ -35,15 +35,15 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 - **Frontend**: A Spring Boot application with Angular parts. Contains embedded `Api Gateway Router` (Zuul), `Client Side Load Balancer` (Ribbon) and `Service Discovery Client` (Eureka client) which help to redirect requests to Api service instances registered in `Service Discovery Server`.
 - **API**: A Spring Boot application with backend information for the Frontend. Includes `Spring Security` parts to provide Json Web Tokens and validate them.
 
-The diagram is created with the help of [draw.io](http://draw.io)
+The diagram is created with the help of [draw.io](https://draw.io)
 
 ## How to run
 
-All applications should be build before running:
+First of all the project:
    
        ./gradlew clean build
 
-This also creates Docker images for applications
+This also creates a Docker image for every application
 
 ### Local environment
 
@@ -55,25 +55,25 @@ This also creates Docker images for applications
 
        ./gradlew config-server:bootRun
 
-   Check that it's running: go to http://localhost:9000/actuator/health
+   Check that it's running at http://localhost:9000/actuator/health
 
 3. Run Service Discovery instance:
 
        ./gradlew service-discovery:bootRun
 
-   Check that it's running: go to http://localhost:9001
+   Check that it's running at http://localhost:9001
 
 4. Run API instance:
 
        ./gradlew api:bootRun
 
-   Check that it's running: go to http://localhost:8081/api/echo
+   Check that it's running at http://localhost:8081/api/echo
 
 4. Run Frontend instance:
 
        ./gradlew frontend:bootRun
 
-   Check that it's running: go to http://localhost:8082
+   Check that it's running at http://localhost:8082
 
 ### Docker compose
 
