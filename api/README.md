@@ -4,4 +4,4 @@ Backend application for providing REST endpoints. Based on Spring Webflux and Sp
 
 ## Screenshot
 
-![Google Chrome](../screenshots/api-echo.png)
+![Google Chrome](../docs/screenshots/api-echo.png)

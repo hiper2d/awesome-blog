@@ -28,7 +28,7 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 
 ## Microservices architecture:
 
-![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/uml/services-diagram.png)
+![diagram](https://raw.githubusercontent.com/hiper2d/awesome-blog/master/docs/uml/services-diagram.png)
 
 - **Config Server**: A Spring Boot application which provides configs (yml files) to all other services. Should be run first.
 - **Service Discovery**: A Spring Boot application with embedded `Service Discovery Server` (Eureka server). Each other services except `Config Server` are registered in it and can access each other by names instead of host-port combination using `Api Gateway Router` service. Should be run second.

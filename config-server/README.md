@@ -10,4 +10,4 @@ If you are accessing a protected endpoint such as `GET http://localhost:9000/api
 
 ## Screenshot
 
-![Google Chrome](../screenshots/config-server.png)
+![Google Chrome](../docs/screenshots/config-server.png)

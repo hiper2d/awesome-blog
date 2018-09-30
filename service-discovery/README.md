@@ -4,4 +4,4 @@ A minimal Eureka server.
 
 ## Screenshot
 
-![Google Chrome](../screenshots/eureka.png)
+![Google Chrome](../docs/screenshots/eureka.png)
