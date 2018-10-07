@@ -1,4 +1,4 @@
-FROM elasticsearch:latest
-MAINTAINER hiper2d <hiper2d@gmail.com>
+ARG ELK_VERSION
 
-EXPOSE 9200 9300
+FROM docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
+MAINTAINER hiper2d <hiper2d@gmail.com>

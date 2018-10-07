@@ -9,7 +9,7 @@ services:
     networks:
       - awesome-network
     ports:
-    - 9000:80
+      - 9000:80
     volumes:
       - ./logs:/logs
       - ./configs:/configs
@@ -26,6 +26,58 @@ services:
       - 9001:80
     volumes:
       - ./logs:/logs
+
+  elasticsearch:
+    build:
+      context: ./elk/elasticsearch
+      args:
+        ELK_VERSION: $ELK_VERSION
+    container_name: elasticsearch
+    environment:
+      - LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    image: hiper2d/elasticsearch
+    networks:
+      - awesome-network
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+
+  logstash:
+    build:
+      context: ./elk/logstash
+      args:
+        ELK_VERSION: $ELK_VERSION
+    container_name: logstash
+    depends_on:
+      - elasticsearch
+    image: hiper2d/logstash
+    networks:
+      - awesome-network
+    ports:
+      - 5000:5000
+      - 9600:9600
+    volumes:
+      - ./elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./elk/logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logs:/logs
+
+  kibana:
+    build:
+      context: ./elk/kibana
+      args:
+        ELK_VERSION: $ELK_VERSION
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    image: hiper2d/kibana
+    networks:
+      - awesome-network
+    ports:
+      - 5601:5601
+    volumes:
+      - ./elk/kibana/config/:/usr/share/kibana/config
 
   api:
     build: ./api
