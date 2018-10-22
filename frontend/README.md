@@ -1,6 +1,6 @@
 # Frontend
 
-Angular 6 client. Support authorization logic for a single page application.
+Angular 7 client. Support authorization logic for a single page application.
 
 ## Screenshot
 
