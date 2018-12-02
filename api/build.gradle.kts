@@ -19,11 +19,6 @@ tasks {
   }
 }
 
-tasks.create("buildMyAppImage", DockerBuildImage::class) {
-  inputDir.set(file("docker/myapp"))
-  tag.set("test/myapp:latest")
-}
-
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect") // used by a router in Spring WebFlux
   implementation("org.springframework.boot:spring-boot-starter-webflux") {
