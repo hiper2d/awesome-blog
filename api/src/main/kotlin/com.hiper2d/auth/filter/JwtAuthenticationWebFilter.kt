@@ -1,8 +1,8 @@
 package com.hiper2d.auth.filter
 
-import com.hiper2d.auth.converter.AuthenticationTokenConverter
 import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
 import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.server.WebFilterChain
 import org.springframework.web.server.adapter.DefaultServerWebExchange
@@ -10,11 +10,11 @@ import reactor.core.publisher.Mono
 
 class JwtAuthenticationWebFilter(
         authenticationManager: ReactiveAuthenticationManager,
-        authenticationTokenConverter: AuthenticationTokenConverter
+        authenticationTokenConverter: ServerAuthenticationConverter
 ) : AuthenticationWebFilter(authenticationManager) {
 
     init {
-        setAuthenticationConverter(authenticationTokenConverter)
+        setServerAuthenticationConverter(authenticationTokenConverter)
     }
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {

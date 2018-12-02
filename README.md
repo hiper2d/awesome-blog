@@ -11,13 +11,13 @@ This is a blog site designed with microservices architecture using `Spring Cloud
 [![devDependencies Status](https://david-dm.org/hiper2d/awesome-blog/dev-status.svg?path=frontend/src/main/ng)](https://david-dm.org/hiper2d/awesome-blog?path=frontend/src/main/ng&type=dev)
 
 ##### Technology stack
-* Spring Framework 5 with Webflux/Reactor
+* Spring Framework 5 with Webflux/Reactor and Netty server
 * Spring Boot 2.0
 * Spring Cloud Netflix 2.0
 * Spring Webflux Security with JWT
 * Kotlin 1.3
 * Angular 7
-* Gradle 4.10 with Kotlin Script and jUnit 5
+* Gradle 5 with Kotlin Script and jUnit 5
 * Docker
 
 ##### Prerequisites

@@ -12,8 +12,8 @@ dependencyManagement {
 
 tasks {
     create<DockerBuildImage>("buildDockerImage") {
-        inputDir = file(".")
-        tag = "hiper2d/discovery:latest"
+        inputDir.set(file("."))
+        tag.set("hiper2d/discovery:latest")
     }
 }
 

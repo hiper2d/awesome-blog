@@ -14,9 +14,14 @@ dependencyManagement {
 
 tasks {
   create<DockerBuildImage>("buildDockerImage") {
-    inputDir = file(".")
-    tag = "hiper2d/api:latest"
+    inputDir.set(file("."))
+    tag.set("hiper2d/api:latest")
   }
+}
+
+tasks.create("buildMyAppImage", DockerBuildImage::class) {
+  inputDir.set(file("docker/myapp"))
+  tag.set("test/myapp:latest")
 }
 
 dependencies {
@@ -26,7 +31,6 @@ dependencies {
   }
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-  implementation("io.projectreactor.ipc:reactor-netty")
   implementation("io.jsonwebtoken:jjwt:$jjwtVersion")
 
   // The JAXB APIs are considered to be Java EE APIs, and therefore are no longer contained on the default class path in Java SE 9.

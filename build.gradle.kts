@@ -2,8 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    val kotlinVersion = "1.3.0"
-    val springBootVersion = "2.0.6.RELEASE"
+    val kotlinVersion = "1.3.10"
+    val dockerPlugin = "4.1.0"
+    val springBootVersion = "2.1.1.RELEASE"
     val springDependencyManagementVersion = "1.0.6.RELEASE"
 
     base
@@ -12,7 +13,7 @@ plugins {
 
     id("org.springframework.boot") version springBootVersion apply false
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion apply false
-    id("com.bmuschko.docker-remote-api") version "3.6.0" apply false
+    id("com.bmuschko.docker-remote-api") version dockerPlugin apply false
 }
 
 val disruptorVersion: String by project

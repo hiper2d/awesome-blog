@@ -24,8 +24,8 @@ tasks {
     commandLine = listOf(yarnCmd, "run", "build")
   }
   create<DockerBuildImage>("buildDockerImage") {
-    inputDir = file(".")
-    tag = "hiper2d/frontend:latest"
+    inputDir.set(file("."))
+    tag.set("hiper2d/frontend:latest")
   }
 }
 

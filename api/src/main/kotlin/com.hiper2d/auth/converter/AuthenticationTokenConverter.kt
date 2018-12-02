@@ -8,16 +8,14 @@ import io.jsonwebtoken.SignatureException
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.Authentication
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
-import java.util.function.Function
 
-class AuthenticationTokenConverter(
-        private val jwtConfig: JwtConfigService
-): Function<ServerWebExchange, Mono<Authentication>> {
+class AuthenticationTokenConverter(private val jwtConfig: JwtConfigService): ServerAuthenticationConverter {
 
-    override fun apply(serverWebExchange: ServerWebExchange): Mono<Authentication> =
-            Mono.just(serverWebExchange.request)
+    override fun convert(exchange: ServerWebExchange): Mono<Authentication> =
+            Mono.just(exchange.request)
                     .flatMap(this::extractJwtToken)
                     .switchIfEmpty(Mono.just(GuestAuthenticationToken()))
 

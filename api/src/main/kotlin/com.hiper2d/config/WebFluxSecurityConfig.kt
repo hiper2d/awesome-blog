@@ -15,6 +15,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.server.SecurityWebFilterChain
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
 
 
 @Configuration
@@ -23,7 +24,7 @@ class WebFluxSecurityConfig @Autowired constructor(private val userRepository: U
 
     @Bean fun jwtConfig() = JwtConfigService()
 
-    @Bean fun authenticationTokenConverter() = AuthenticationTokenConverter(jwtConfig())
+    @Bean fun authenticationTokenConverter(): ServerAuthenticationConverter = AuthenticationTokenConverter(jwtConfig())
 
     @Bean fun authenticationManager() = JwtReactiveAuthenticationManager(userRepository)
 

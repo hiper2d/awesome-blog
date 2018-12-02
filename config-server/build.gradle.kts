@@ -9,9 +9,9 @@ dependencyManagement {
 }
 
 tasks {
-    register<DockerBuildImage>("buildDockerImage") {
-        inputDir = file(".")
-        tag = "hiper2d/config:latest"
+    create<DockerBuildImage>("buildDockerImage") {
+        inputDir.set(file("."))
+        tag.set("hiper2d/config:latest")
     }
 }
 
