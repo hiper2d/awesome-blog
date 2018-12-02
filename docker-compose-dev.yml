@@ -7,39 +7,46 @@ services:
     container_name: config
     image: hiper2d/config
     networks:
-    - awesome-network
+      - awesome-network
     ports:
-    - 9000:80
+      - 9000:80
     volumes:
-    - ./logs:/logs
-    - ./configs:/configs
+      - ./logs:/logs
+      - ./configs:/configs
 
   discovery:
     build: ./service-discovery
     container_name: discovery
     depends_on:
-    - config
+      - config
     image: hiper2d/discovery
     networks:
-    - awesome-network
+      - awesome-network
     ports:
-    - 9001:80
+      - 9001:80
     volumes:
-    - ./logs:/logs
+      - ./logs:/logs
+
+  api-mongo:
+    image: mongo
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: hiper2d
+        MONGO_INITDB_ROOT_PASSWORD: mongo1
 
   api:
     build: ./api
     container_name: api
     depends_on:
-    - config
-    - discovery
+      - config
+      - discovery
     image: hiper2d/api
     networks:
-    - awesome-network
+      - awesome-network
     ports:
-    - 8080:80
+      - 8080:80
     volumes:
-    - ./logs:/logs
+      - ./logs:/logs
 
 networks:
   awesome-network:

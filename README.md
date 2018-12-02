@@ -117,14 +117,13 @@ This also creates a Docker image for every application
         
 ### Elk Docker containers
 
-        docker run --name elasticsearch --net awesome-network -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.4.2
-        docker run --name logstash --net awesome-network -p 5000:5000 -p 9600:9600 -v $(pwd)/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml -v $(pwd)/elk/logstash/pipeline:/usr/share/logstash/pipeline -v $(pwd)/logs:/logs docker.elastic.co/logstash/logstash:6.4.2
-        docker run --name kibana --net awesome-network -p 5601:5601 -v $(pwd)/elk/kibana/config:/usr/share/kibana/config docker.elastic.co/kibana/kibana-oss:6.4.2
+        docker run --name elasticsearch --net awesome-network -p 9200:9200 -p 9300:9300 docker.elastic.co/elasticsearch/elasticsearch:6.5.1
+        docker run --name logstash --net awesome-network -p 5000:5000 -p 9600:9600 -v $(pwd)/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml -v $(pwd)/elk/logstash/pipeline:/usr/share/logstash/pipeline -v $(pwd)/logs:/logs docker.elastic.co/logstash/logstash:6.5.1
+        docker run --name kibana --net awesome-network -p 5601:5601 -v $(pwd)/elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml docker.elastic.co/kibana/kibana-oss:6.5.1
         
 ## Roadmap
 
 - ~~add Docker Compose~~
+- add Logstash, Elasticsearch, Kibana stack for advanced logging
 - add Mongodb to the Api service
 - start creating user interfaces
-- add Logstash, Elasticsearch, Kibana stack for advanced logging
-- etc

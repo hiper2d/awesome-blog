@@ -16,8 +16,6 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
-    volumes:
-      - ./elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
 
   logstash:
     build:
@@ -39,20 +37,16 @@ services:
       - ./logs:/logs
 
   kibana:
-    build:
-      context: ./elk/kibana
-      args:
-        ELK_VERSION: $ELK_VERSION
     container_name: kibana
     depends_on:
       - elasticsearch
-    image: hiper2d/kibana
+    image: docker.elastic.co/kibana/kibana:$ELK_VERSION
     networks:
       - awesome-network
     ports:
       - 5601:5601
     volumes:
-      - ./elk/kibana/config/:/usr/share/kibana/config
+      - ./elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
 networks:
   awesome-network:
