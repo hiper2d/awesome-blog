@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    val kotlinVersion = "1.3.10"
+    val kotlinVersion = "1.3.11"
     val dockerPlugin = "4.1.0"
-    val springBootVersion = "2.1.1.RELEASE"
+    val springBootVersion = "2.1.2.RELEASE"
     val springDependencyManagementVersion = "1.0.6.RELEASE"
 
     base
