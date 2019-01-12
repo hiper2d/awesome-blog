@@ -27,13 +27,6 @@ services:
     volumes:
       - ./logs:/logs
 
-  api-mongo:
-    image: mongo
-      restart: always
-      environment:
-        MONGO_INITDB_ROOT_USERNAME: hiper2d
-        MONGO_INITDB_ROOT_PASSWORD: mongo1
-
   api:
     build: ./api
     container_name: api

@@ -31,7 +31,6 @@ services:
     build: ./api
     container_name: api
     depends_on:
-      - api-mongo
       - config
       - discovery
     image: hiper2d/api
